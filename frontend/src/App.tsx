@@ -31,7 +31,11 @@ function App() {
       <h1>Roupas</h1>
       <div>
         {clothes.map((clothe) => (
-          <p>{clothe.name}</p>
+          <div key={clothe.id}>
+            <span>{clothe.name}</span>
+            <span>{clothe.description}</span>
+            <span>{clothe.price}</span>
+          </div>
         ))}
       </div>
     </>
