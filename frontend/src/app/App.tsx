@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { Container } from './styles';
 interface ClotheProps {
   id: number;
   name: string;
@@ -31,11 +31,11 @@ function App() {
       <h1>Roupas</h1>
       <div>
         {clothes.map((clothe) => (
-          <div key={clothe.id}>
-            <span>{clothe.name}</span>
-            <span>{clothe.description}</span>
-            <span>{clothe.price}</span>
-          </div>
+          <Container key={clothe.id}>
+            <h4>{clothe.name}</h4>
+            <p>{clothe.description}</p>
+            <p>Preço: R${clothe.price}</p>
+          </Container>
         ))}
       </div>
     </>
