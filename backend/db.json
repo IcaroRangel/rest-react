@@ -1,0 +1,10 @@
+{
+  "clothes": [
+    {
+      "id": 1,
+      "name": "camisa",
+      "description": "Uma camisa G",
+      "price": 35
+    }
+  ]
+}
