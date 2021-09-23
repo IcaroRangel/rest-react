@@ -1,5 +1,7 @@
 import React from 'react';
 import { Container } from './styles';
+import axios from 'axios';
+
 interface ClotheProps {
   id: number;
   name: string;
@@ -7,25 +9,16 @@ interface ClotheProps {
   price: number;
 }
 
-const fakeClothes = [
-  {
-    name: 'camisa social',
-    description: 'Uma camisa social GG azul',
-    price: 83,
-    id: 1,
-  },
-  {
-    name: 'bermuda',
-    description: 'Uma bermuda P rosa',
-    price: 40,
-    id: 2,
-  },
-];
 function App() {
   const [clothes, setClothes] = React.useState<ClotheProps[]>([]);
-  React.useEffect(() => {
-    setClothes(fakeClothes);
+
+  const loadClothes = React.useCallback(async () => {
+    const clothesResponse = await axios.get('http://localhost:3000/clothes');
+    setClothes(clothesResponse.data);
   }, []);
+  React.useEffect(() => {
+    loadClothes();
+  }, [loadClothes]);
   return (
     <>
       <h1>Roupas</h1>
