@@ -3,8 +3,11 @@ import styled from 'styled-components';
 export const Container = styled.div`
   height: 30vh;
   font-size: 18px;
-  h4 {
-    text-transform: capitalize;
+  form {
+    button {
+      margin-left: 14rem;
+      margin-top: -2.6rem;
+    }
   }
   button {
     position: absolute;
@@ -17,12 +20,31 @@ export const Container = styled.div`
     display: block;
     margin-bottom: 20px;
   }
-  div,
+`;
+
+export const ContainerInfos = styled.div`
+  max-width: 35vw;
+  padding-left: 6px;
+  border: 1px solid #cc0000;
+  border-radius: 6px;
+  height: 30vh;
+  margin-bottom: 20px;
+  display: block;
   form {
-    padding-left: 6px;
-    border: 1px solid #cc0000;
-    border-radius: 6px;
-    height: 30vh;
-    margin-bottom: 20px;
+    padding-top: -60px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    button {
+      position: absolute;
+      margin-top: 0px;
+    }
+  }
+  h4 {
+    text-transform: capitalize;
+  }
+  input {
+    margin-left: 14rem;
+    margin-top: -2.6rem;
   }
 `;
