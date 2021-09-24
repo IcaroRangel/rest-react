@@ -1,22 +1,10 @@
 {
   "clothes": [
     {
-      "name": "bermuda",
-      "description": "Uma bermuda P rosa",
-      "price": 40,
-      "id": 2
-    },
-    {
-      "name": "calça",
-      "description": "Uma calça P branca",
-      "price": 89,
-      "id": 3
-    },
-    {
-      "name": "Sapato",
-      "description": "Uma sapato tamanho 40",
-      "price": 103,
-      "id": 4
+      "name": "Camisa",
+      "description": "Camisa social verde",
+      "price": "89",
+      "id": 1
     }
   ]
 }
