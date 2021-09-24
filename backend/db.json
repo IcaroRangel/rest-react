@@ -1,10 +1,22 @@
 {
   "clothes": [
     {
+      "name": "Calça",
+      "description": "Uma calça PP verde",
+      "price": 200,
+      "id": 2
+    },
+    {
       "name": "Camisa",
-      "description": "Camisa social verde",
-      "price": "89",
-      "id": 1
+      "description": "Uma camisa PP rosa",
+      "price": "29",
+      "id": 3
+    },
+    {
+      "name": "Casaco",
+      "description": "Um casaco G verde",
+      "price": "119",
+      "id": 4
     }
   ]
 }
