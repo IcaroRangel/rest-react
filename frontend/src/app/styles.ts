@@ -23,7 +23,7 @@ export const Container = styled.div`
 `;
 
 export const ContainerInfos = styled.div`
-  max-width: 35vw;
+  width: 30rem;
   padding-left: 6px;
   border: 1px solid #cc0000;
   border-radius: 6px;

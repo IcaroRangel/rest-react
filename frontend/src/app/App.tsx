@@ -15,6 +15,9 @@ function App() {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [price, setPrice] = React.useState();
+  // const [changedName, setChangedName] = React.useState('');
+  // const [changedDescription, setChangedDescription] = React.useState('');
+  // const [changedPrice, setChangedPrice] = React.useState(0);
 
   const loadClothes = React.useCallback(async () => {
     const clothesResponse = await axios.get(url);
@@ -41,8 +44,8 @@ function App() {
     },
     [name, description, price],
   );
-
-  const changeClothe = React.useCallback(async (id: number) => {
+  const changeClothe = React.useCallback(async (e: any, id: number) => {
+    e.preventDefault();
     await axios.put(`${url}/${id}`);
   }, []);
 
@@ -72,32 +75,21 @@ function App() {
       </form>
       {clothes.map((clothe) => (
         <ContainerInfos key={clothe.id}>
-          <form className="changeForm" onSubmit={() => changeClothe(clothe.id)}>
+          <form
+            className="changeForm"
+            onSubmit={(e: any) => {
+              changeClothe(e.target.value, clothe.id);
+            }}
+          >
             <h4>{clothe.name}</h4>
-            <input
-              type="text"
-              placeholder="Editar nome"
-              onChange={() => {
-                changeClothe(clothe.id);
-              }}
-            />
+            <input type="text" placeholder="Editar nome" />
             <p>{clothe.description}</p>
-            <input
-              type="text"
-              placeholder="Editar descrição"
-              onChange={(e: any) => {
-                setDescription(e.target.value);
-                changeClothe(clothe.id);
-              }}
-            />
-            <p>Preço: R${clothe.price}</p>
-            <input
-              type="text"
-              placeholder="Editar preço"
-              onChange={() => {
-                changeClothe(clothe.id);
-              }}
-            />
+            <input type="text" placeholder="Editar descrição" />
+            <p>
+              Preço: R$
+              {clothe.price}
+            </p>
+            <input type="text" placeholder="Editar preço" />
             <button>Enviar alterações</button>
           </form>
           <button onClick={() => removeClothe(clothe.id)}>Remover Roupa</button>
