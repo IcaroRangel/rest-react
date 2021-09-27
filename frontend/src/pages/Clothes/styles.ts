@@ -30,16 +30,6 @@ export const ContainerInfos = styled.div`
   height: 30vh;
   margin-bottom: 20px;
   display: block;
-  form {
-    padding-top: -60px;
-    display: block;
-    justify-content: center;
-    align-items: center;
-    button {
-      position: absolute;
-      margin-top: 0px;
-    }
-  }
   h4 {
     text-transform: capitalize;
   }

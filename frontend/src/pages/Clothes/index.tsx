@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, ContainerInfos } from './styles';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 interface ClotheProps {
   id: number;
@@ -12,12 +13,6 @@ interface ClotheProps {
 function Clothes() {
   const url = 'http://localhost:3000/clothes';
   const [clothes, setClothes] = React.useState<ClotheProps[]>([]);
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
-  const [price, setPrice] = React.useState();
-  const [changedName, setChangedName] = React.useState('');
-  const [changedDescription, setChangedDescription] = React.useState('');
-  const [changedPrice, setChangedPrice] = React.useState(0);
 
   const loadClothes = React.useCallback(async () => {
     const clothesResponse = await axios.get(url);
@@ -37,13 +32,7 @@ function Clothes() {
     },
     [clothes],
   );
-  const addClothe = React.useCallback(
-    async (e: any) => {
-      const response = { name, description, price };
-      await axios.post(url, response);
-    },
-    [name, description, price],
-  );
+
   const changeClothe = React.useCallback(async (e: any, id: number) => {
     e.preventDefault();
     await axios.put(`${url}/${id}`);
@@ -52,27 +41,9 @@ function Clothes() {
   return (
     <Container>
       <h1>Roupas</h1>
-      <form onSubmit={addClothe}>
-        <label>Nome da roupa:</label>
-        <input
-          type="text"
-          value={name}
-          onChange={(e: any) => setName(e.target.value)}
-        />
-        <label>Descrição da roupa:</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e: any) => setDescription(e.target.value)}
-        />
-        <label>Preço da roupa:</label>
-        <input
-          type="text"
-          value={price}
-          onChange={(e: any) => setPrice(e.target.value)}
-        />
-        <button>Enviar</button>
-      </form>
+      <Link to="/newProduct">
+        <button>Adicionar roupa</button>
+      </Link>
       {clothes.map((clothe) => (
         <ContainerInfos key={clothe.id}>
           <form
