@@ -5,16 +5,15 @@ export const Container = styled.div`
   font-size: 18px;
   form {
     button {
-      margin-left: 14rem;
-      margin-top: -2.6rem;
+      position: absolute;
     }
   }
   button {
-    position: absolute;
     background: #fff;
     border-radius: 30px;
     cursor: pointer;
     margin-bottom: 5px;
+    margin-right: 50px;
   }
   input {
     display: block;
@@ -29,6 +28,7 @@ export const ContainerInfos = styled.div`
   border-radius: 6px;
   height: 30vh;
   margin-bottom: 20px;
+
   display: block;
   h4 {
     text-transform: capitalize;

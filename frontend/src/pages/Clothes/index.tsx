@@ -2,23 +2,17 @@ import React from 'react';
 import { Container, ContainerInfos } from './styles';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-
-interface ClotheProps {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-}
+import { useClotheContext } from '../../context/ClotheContext';
 
 function Clothes() {
   const url = 'http://localhost:3000/clothes';
-  const [clothes, setClothes] = React.useState<ClotheProps[]>([]);
+  const { clothes, setClothes } = useClotheContext();
 
   const loadClothes = React.useCallback(async () => {
     const clothesResponse = await axios.get(url);
     const response = clothesResponse.data;
     setClothes(response);
-  }, []);
+  }, [setClothes]);
 
   React.useEffect(() => {
     loadClothes();
@@ -30,13 +24,8 @@ function Clothes() {
       const deleteClothe = clothes.filter((clothe) => clothe.id !== id);
       setClothes([...deleteClothe]);
     },
-    [clothes],
+    [clothes, setClothes],
   );
-
-  const changeClothe = React.useCallback(async (e: any, id: number) => {
-    e.preventDefault();
-    await axios.put(`${url}/${id}`);
-  }, []);
 
   return (
     <Container>
@@ -46,24 +35,16 @@ function Clothes() {
       </Link>
       {clothes.map((clothe) => (
         <ContainerInfos key={clothe.id}>
-          <form
-            className="changeForm"
-            onSubmit={(e: any) => {
-              changeClothe(e.target.value, clothe.id);
-            }}
-          >
-            <h4>{clothe.name}</h4>
-            <input type="text" placeholder="Editar nome" />
-            <p>{clothe.description}</p>
-            <input type="text" placeholder="Editar descrição" />
-            <p>
-              Preço: R$
-              {clothe.price}
-            </p>
-            <input type="text" placeholder="Editar preço" />
-            <button>Enviar alterações</button>
-          </form>
+          <h4>{clothe.name}</h4>
+          <p>{clothe.description}</p>
+          <p>
+            Preço: R$
+            {clothe.price}
+          </p>
           <button onClick={() => removeClothe(clothe.id)}>Remover Roupa</button>
+          <Link to="/putProducts">
+            <button>Editar roupa</button>
+          </Link>
         </ContainerInfos>
       ))}
     </Container>

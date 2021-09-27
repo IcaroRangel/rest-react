@@ -1,23 +1,21 @@
 import React from 'react';
 import axios from 'axios';
-import { Container } from './styles';
 import { Link } from 'react-router-dom';
-
-const NewProduct = () => {
+import { Container } from './styles';
+const PutProducts = () => {
   const url = 'http://localhost:3000/clothes';
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [price, setPrice] = React.useState();
-  const addClothe = React.useCallback(
-    async (e: any) => {
-      const response = { name, description, price };
-      await axios.post(url, response);
-    },
-    [name, description, price],
-  );
+
+  const changeClothe = React.useCallback(async (e?: any) => {
+    e.preventDefault();
+    await axios.put(`${url}/2`);
+  }, []);
+
   return (
     <Container>
-      <form onSubmit={addClothe}>
+      <form onSubmit={() => changeClothe()}>
         <label>Nome da roupa:</label>
         <input
           type="text"
@@ -36,7 +34,7 @@ const NewProduct = () => {
           value={price}
           onChange={(e: any) => setPrice(e.target.value)}
         />
-        <button>Enviar roupa</button>
+        <button>Enviar alterações</button>
       </form>
       <Link to="/">
         <button>Voltar</button>
@@ -45,4 +43,4 @@ const NewProduct = () => {
   );
 };
 
-export default NewProduct;
+export default PutProducts;
