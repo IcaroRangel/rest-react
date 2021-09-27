@@ -15,9 +15,9 @@ function App() {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [price, setPrice] = React.useState();
-  // const [changedName, setChangedName] = React.useState('');
-  // const [changedDescription, setChangedDescription] = React.useState('');
-  // const [changedPrice, setChangedPrice] = React.useState(0);
+  const [changedName, setChangedName] = React.useState('');
+  const [changedDescription, setChangedDescription] = React.useState('');
+  const [changedPrice, setChangedPrice] = React.useState(0);
 
   const loadClothes = React.useCallback(async () => {
     const clothesResponse = await axios.get(url);
@@ -82,7 +82,7 @@ function App() {
             }}
           >
             <h4>{clothe.name}</h4>
-            <input type="text" placeholder="Editar nome" />
+            <input value={changedName} type="text" placeholder="Editar nome" />
             <p>{clothe.description}</p>
             <input type="text" placeholder="Editar descrição" />
             <p>
