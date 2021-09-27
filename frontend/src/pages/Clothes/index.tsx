@@ -9,7 +9,7 @@ interface ClotheProps {
   price: number;
 }
 
-function App() {
+function Clothes() {
   const url = 'http://localhost:3000/clothes';
   const [clothes, setClothes] = React.useState<ClotheProps[]>([]);
   const [name, setName] = React.useState('');
@@ -82,7 +82,7 @@ function App() {
             }}
           >
             <h4>{clothe.name}</h4>
-            <input value={changedName} type="text" placeholder="Editar nome" />
+            <input type="text" placeholder="Editar nome" />
             <p>{clothe.description}</p>
             <input type="text" placeholder="Editar descrição" />
             <p>
@@ -99,4 +99,4 @@ function App() {
   );
 }
 
-export default App;
+export default Clothes;
