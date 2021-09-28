@@ -2,9 +2,10 @@ import React from 'react';
 import axios from 'axios';
 import { Container } from './styles';
 import { Link } from 'react-router-dom';
+import { useClotheContext } from '../../context/ClotheContext';
 
 const NewProduct = () => {
-  const url = 'http://localhost:3000/clothes';
+  const { url } = useClotheContext();
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [price, setPrice] = React.useState();
@@ -13,7 +14,7 @@ const NewProduct = () => {
       const response = { name, description, price };
       await axios.post(url, response);
     },
-    [name, description, price],
+    [name, description, price, url],
   );
   return (
     <Container>

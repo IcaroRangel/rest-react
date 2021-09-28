@@ -3,6 +3,7 @@ import React, { createContext, ReactNode, useContext } from 'react';
 interface ClotheContextData {
   clothes: ClotheProps[];
   setClothes: (clothes: ClotheProps[]) => void;
+  url: string;
 }
 
 interface ClotheProviderProps {
@@ -19,8 +20,9 @@ const clotheContext = createContext({} as ClotheContextData);
 
 export const ClotheProvider = ({ children }: ClotheProviderProps) => {
   const [clothes, setClothes] = React.useState<ClotheProps[]>([]);
+  const url = 'http://localhost:3000/clothes';
   return (
-    <clotheContext.Provider value={{ clothes, setClothes }}>
+    <clotheContext.Provider value={{ clothes, setClothes, url }}>
       {children}
     </clotheContext.Provider>
   );

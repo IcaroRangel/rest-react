@@ -5,14 +5,14 @@ import { Link } from 'react-router-dom';
 import { useClotheContext } from '../../context/ClotheContext';
 
 function Clothes() {
-  const url = 'http://localhost:3000/clothes';
+  const { url } = useClotheContext();
   const { clothes, setClothes } = useClotheContext();
 
   const loadClothes = React.useCallback(async () => {
     const clothesResponse = await axios.get(url);
     const response = clothesResponse.data;
     setClothes(response);
-  }, [setClothes]);
+  }, [setClothes, url]);
 
   React.useEffect(() => {
     loadClothes();
@@ -21,10 +21,10 @@ function Clothes() {
   const removeClothe = React.useCallback(
     async (id: number) => {
       await axios.delete(`${url}/${id}`);
-      const deleteClothe = clothes.filter((clothe) => clothe.id !== id);
-      setClothes([...deleteClothe]);
+      const deletedClothe = clothes.filter((clothe) => clothe.id !== id);
+      setClothes([...deletedClothe]);
     },
-    [clothes, setClothes],
+    [clothes, setClothes, url],
   );
 
   return (
@@ -43,7 +43,7 @@ function Clothes() {
           </p>
           <button onClick={() => removeClothe(clothe.id)}>Remover Roupa</button>
           <Link to="/putProducts">
-            <button>Editar roupa</button>
+            <button onClick={() => setClothes([clothe])}>Editar roupa</button>
           </Link>
         </ContainerInfos>
       ))}
