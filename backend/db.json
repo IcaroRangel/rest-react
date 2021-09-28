@@ -1,22 +1,40 @@
 {
   "clothes": [
     {
-      "name": "Calça",
-      "description": "Uma calça PP verde",
-      "price": 200,
+      "name": "Sapato 1000",
+      "description": "Sapato social",
+      "price": "100",
+      "id": 1
+    },
+    {
+      "name": "Camisa dsids",
+      "description": "Camisa preta",
+      "price": "97",
       "id": 2
     },
     {
       "name": "Camisa",
-      "description": "Uma camisa PP rosa",
-      "price": "29",
+      "description": "Camisa social",
+      "price": "88",
       "id": 3
     },
     {
       "name": "Casaco",
-      "description": "Um casaco G verde",
-      "price": "119",
+      "description": "Casaco marrom",
+      "price": "100",
       "id": 4
+    },
+    {
+      "name": "Camisa",
+      "description": "Camisa preta",
+      "price": "100",
+      "id": 5
+    },
+    {
+      "name": "Bermuda",
+      "description": "Bermuda azul",
+      "price": "119",
+      "id": 6
     }
   ]
 }
