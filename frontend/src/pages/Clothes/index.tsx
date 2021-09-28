@@ -42,8 +42,8 @@ function Clothes() {
             {clothe.price}
           </p>
           <button onClick={() => removeClothe(clothe.id)}>Remover Roupa</button>
-          <Link to="/putProducts">
-            <button onClick={() => setClothes([clothe])}>Editar roupa</button>
+          <Link to={`/putProducts/${clothe.id}`}>
+            <button>Editar roupa</button>
           </Link>
         </ContainerInfos>
       ))}
