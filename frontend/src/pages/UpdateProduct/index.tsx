@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import axios from 'axios';
 import { Link, useRouteMatch, useHistory } from 'react-router-dom';
 import { Container } from './styles';
-import { useClotheContext } from '../../context/ClotheContext';
+import api from '../../services/api';
 
 interface RouteParams {
   id: string;
@@ -15,8 +15,7 @@ interface Clothe {
   price: number;
 }
 
-const PutProducts = () => {
-  const { url } = useClotheContext();
+const UpdateProduct = () => {
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [price, setPrice] = React.useState(0);
@@ -25,13 +24,13 @@ const PutProducts = () => {
   const history = useHistory();
 
   const loadClothe = React.useCallback(async () => {
-    const clotheResponse = await axios.get<Clothe>(`${url}/${params.id}`);
+    const clotheResponse = await api.get<Clothe>(`/${params.id}`);
     console.log(clotheResponse.data);
     const clotheValue = clotheResponse.data;
     setName(clotheValue.name);
     setDescription(clotheValue.description);
     setPrice(clotheValue.price);
-  }, [url, params.id]);
+  }, [params.id]);
 
   React.useEffect(() => {
     loadClothe();
@@ -42,13 +41,13 @@ const PutProducts = () => {
       e.preventDefault();
       try {
         const response = { name, description, price };
-        await axios.put(`${url}/${params.id}`, response);
+        await axios.put(`/${params.id}`, response);
         history.goBack();
       } catch (error) {
         alert('Houve um erro');
       }
     },
-    [description, name, params.id, price, url, history],
+    [description, name, params.id, price, history],
   );
 
   return (
@@ -88,4 +87,4 @@ const PutProducts = () => {
   );
 };
 
-export default PutProducts;
+export default UpdateProduct;

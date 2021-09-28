@@ -1,18 +1,23 @@
 import React from 'react';
 import { Container, ContainerInfos } from './styles';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { useClotheContext } from '../../context/ClotheContext';
+import api from '../../services/api';
+
+interface ClotheProps {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+}
 
 function Clothes() {
-  const { url } = useClotheContext();
-  const { clothes, setClothes } = useClotheContext();
+  const [clothes, setClothes] = React.useState<ClotheProps[]>([]);
 
   const loadClothes = React.useCallback(async () => {
-    const clothesResponse = await axios.get(url);
+    const clothesResponse = await api.get('');
     const response = clothesResponse.data;
     setClothes(response);
-  }, [setClothes, url]);
+  }, [setClothes]);
 
   React.useEffect(() => {
     loadClothes();
@@ -20,11 +25,11 @@ function Clothes() {
 
   const removeClothe = React.useCallback(
     async (id: number) => {
-      await axios.delete(`${url}/${id}`);
+      await api.delete(`/${id}`);
       const deletedClothe = clothes.filter((clothe) => clothe.id !== id);
       setClothes([...deletedClothe]);
     },
-    [clothes, setClothes, url],
+    [clothes, setClothes],
   );
 
   return (
@@ -42,7 +47,7 @@ function Clothes() {
             {clothe.price}
           </p>
           <button onClick={() => removeClothe(clothe.id)}>Remover Roupa</button>
-          <Link to={`/putProducts/${clothe.id}`}>
+          <Link to={`/updateProduct/${clothe.id}`}>
             <button>Editar roupa</button>
           </Link>
         </ContainerInfos>

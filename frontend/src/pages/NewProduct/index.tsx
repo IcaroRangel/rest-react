@@ -1,11 +1,9 @@
 import React, { FormEvent } from 'react';
-import axios from 'axios';
 import { Container } from './styles';
 import { Link, useHistory } from 'react-router-dom';
-import { useClotheContext } from '../../context/ClotheContext';
+import api from '../../services/api';
 
 const NewProduct = () => {
-  const { url } = useClotheContext();
   const [name, setName] = React.useState('');
   const [description, setDescription] = React.useState('');
   const [price, setPrice] = React.useState();
@@ -14,10 +12,10 @@ const NewProduct = () => {
     async (e: FormEvent) => {
       e.preventDefault();
       const response = { name, description, price };
-      await axios.post(url, response);
+      await api.post('', response);
       history.goBack();
     },
-    [name, description, price, url, history],
+    [name, description, price, history],
   );
   return (
     <Container>
